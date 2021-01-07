@@ -1,4 +1,4 @@
-## qqenvelop-微信小游戏开放数据后台接口
+## qqenvelop-qq红包
 
 [![Build Status](https://travis-ci.com/Birjemin/qqenvelop.svg?branch=master)](https://travis-ci.com/Birjemin/qqenvelop) 
 [![Go Report Card](https://goreportcard.com/badge/github.com/birjemin/qqenvelop)](https://goreportcard.com/report/github.com/birjemin/qqenvelop) 
