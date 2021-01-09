@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/birjemin/qqenvelop/utils"
 	"log"
+	"net/url"
 	"strconv"
 	"strings"
 )
@@ -104,7 +105,7 @@ func (s *SendQPayHb) doSendQPayHb(URL, OpenID string, attributes ParamsSendQPayH
 // generateBillNo get bill_no
 func (s *SendQPayHb) generateBillNo() string {
 
-	return s.MchID + utils.GetDateNum() + utils.Hex(10)
+	return s.MchID + utils.GetDateNum() + strconv.Itoa(utils.RandNum(1000000000, 10000000000))
 }
 
 // getCharset get charset
@@ -134,5 +135,8 @@ func (s *SendQPayHb) generateSign(queryStr string) string {
 // generateQueryStr generate query str
 // doc: https://mp.qpay.tenpay.com/buss/wiki/221/1244
 func (s *SendQPayHb) generateQueryStr(params map[string]string) string {
-	return fmt.Sprintf("%s&key=%s", utils.QuerySortByKeyStr2(params), s.AppSecret)
+
+	query := utils.QuerySortByKeyStr2(params)
+	query, _ = url.QueryUnescape(query)
+	return fmt.Sprintf("%s&key=%s", query, s.AppSecret)
 }

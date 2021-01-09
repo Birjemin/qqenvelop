@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/hex"
 	"math/rand"
+	"time"
 )
 
 // GenerateBillNo generate billNo
@@ -23,4 +24,10 @@ func Bytes(n int) []byte {
 		panic(err)
 	}
 	return b
+}
+
+// RandNum rand num
+func RandNum(min, max int) int {
+	rand.Seed(time.Now().UnixNano())
+	return min + rand.Intn(max-min)
 }

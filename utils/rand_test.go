@@ -10,4 +10,7 @@ func TestRand(t *testing.T) {
 
 	billNo := GenerateBillNo()
 	ast.Equal(32, len(billNo))
+
+	num := RandNum(100, 1000)
+	ast.Equal(0, num/1000)
 }
