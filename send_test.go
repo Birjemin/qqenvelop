@@ -17,7 +17,7 @@ func TestSend(t *testing.T) {
 
 	var ts = httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-		ret := `{"return_code":"SUCCESS","return_msg":"","retcode":"0","retmsg":"","listid":"101000000502201506300000100001"}`
+		ret := `{"retcode":"0","retmsg":"ok","listid":"101000000502201506300000100001"}`
 		for _, v := range []string{"charset", "nonce_str", "sign", "mch_billno", "total_amount", "wishing"} {
 			val := r.FormValue(v)
 			if val == "" {
@@ -68,7 +68,7 @@ func TestSend(t *testing.T) {
 	if err != nil {
 		t.Fatal("err: ", err.Error())
 	}
-	ast.Equal("SUCCESS", ret.ReturnCode)
+	ast.Equal("0", ret.RetCode)
 
 	params = ParamsSendQPayHb{
 		TotalAmount: 1,
@@ -82,6 +82,6 @@ func TestSend(t *testing.T) {
 	if err != nil {
 		t.Fatal("err2: ", err.Error())
 	}
-	ast.Equal("FAIL", ret.ReturnCode)
+	ast.Equal("066228701", ret.RetCode)
 
 }
