@@ -10,7 +10,7 @@ import (
 )
 
 // QPayHbURL send envelop url
-const QPayHbURL = "https://api.qpay.qq.com/cgi-bin/hongbao/qpay_hb_mch_send.cgi"
+const qPayHbURL = "https://api.qpay.qq.com/cgi-bin/hongbao/qpay_hb_mch_send.cgi"
 
 // SendQPayHb model
 type SendQPayHb struct {
@@ -48,7 +48,7 @@ type RespSendQPayHb struct {
 // SendQPayHb send red envelop
 // Doc: https://mp.qpay.tenpay.com/buss/wiki/221/1220
 func (s *SendQPayHb) SendQPayHb(OpenID string, attributes ParamsSendQPayHb) (*RespSendQPayHb, error) {
-	return s.doSendQPayHb(QPayHbURL, OpenID, attributes)
+	return s.doSendQPayHb(qPayHbURL, OpenID, attributes)
 }
 
 // doSendQPayHb handle this action
@@ -86,7 +86,7 @@ func (s *SendQPayHb) doSendQPayHb(URL, OpenID string, attributes ParamsSendQPayH
 	if attributes.MaxValue == 0 {
 		params["max_value"] = total
 	}
-	params["sign"] = s.generateSign(s.generateQueryStr(params))
+	params["sign"] = generateSign(generateQueryStr(s.AppSecret, params))
 
 	var resp = new(RespSendQPayHb)
 
@@ -128,15 +128,15 @@ func (s *SendQPayHb) getTotalNum(num int) int {
 }
 
 // generateSign generate sign
-func (s *SendQPayHb) generateSign(queryStr string) string {
+func generateSign(queryStr string) string {
 	return strings.ToUpper(utils.GetMD5String(queryStr))
 }
 
 // generateQueryStr generate query str
 // doc: https://mp.qpay.tenpay.com/buss/wiki/221/1244
-func (s *SendQPayHb) generateQueryStr(params map[string]string) string {
+func generateQueryStr(appSecret string, params map[string]string) string {
 
 	query := utils.QuerySortByKeyStr2(params)
 	query, _ = url.QueryUnescape(query)
-	return fmt.Sprintf("%s&key=%s", query, s.AppSecret)
+	return fmt.Sprintf("%s&key=%s", query, appSecret)
 }
