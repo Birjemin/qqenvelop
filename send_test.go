@@ -49,11 +49,12 @@ func TestSend(t *testing.T) {
 	defer ts.Close()
 
 	obj := SendQPayHb{
-		MchID:       "",
-		MchName:     "",
-		AppSecret:   "",
-		QqAppID:     "",
+		MchID:       "mch_id",
+		MchName:     "mch_name",
+		AppSecret:   "app_secret",
+		QqAppID:     "1001",
 		HTTPRequest: c,
+		NotifyURL:   "http://localhost",
 	}
 
 	params := ParamsSendQPayHb{
@@ -61,6 +62,7 @@ func TestSend(t *testing.T) {
 		Wishing:     "新年好",
 		ActName:     "新年活动",
 		IconID:      23,
+		BannerID:    10,
 	}
 
 	// success

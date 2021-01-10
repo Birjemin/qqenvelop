@@ -83,6 +83,5 @@ func (n *NotifyQPayHb) CheckSign(params *ParseNotify) bool {
 	if params.Attach != "" {
 		m["attach"] = params.Attach
 	}
-
 	return sign == generateSign(generateQueryStr(n.AppSecret, m))
 }

@@ -19,8 +19,8 @@ type QPayHbDetail struct {
 type ParamsQPayHbDetail struct {
 	ListID    string
 	SendType  int    // default 0
-	SubMchID  string // detault empty
-	MchBillNo string // default 0
+	SubMchID  string // default empty
+	MchBillNo string // default empty
 }
 
 // RespQPayHbDetail response

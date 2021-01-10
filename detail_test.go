@@ -46,7 +46,10 @@ func TestDetailHb(t *testing.T) {
 	}
 
 	params := ParamsQPayHbDetail{
-		ListID: "101000000502201506300000100001",
+		ListID:    "101000000502201506300000100001",
+		SendType:  0,
+		SubMchID:  "",
+		MchBillNo: "1010000005022015",
 	}
 
 	// success
@@ -56,6 +59,21 @@ func TestDetailHb(t *testing.T) {
 	}
 	ast.Equal("0", ret.RetCode)
 
+	params = ParamsQPayHbDetail{
+		ListID:    "101000000502201506300000100001",
+		SendType:  1,
+		SubMchID:  "10001",
+		MchBillNo: "1010000005022015",
+	}
+
+	// success
+	ret, err = obj.doGetDetail(ts.URL, params)
+	if err != nil {
+		t.Fatal("err1: ", err.Error())
+	}
+	ast.Equal("0", ret.RetCode)
+
+	// failed
 	params = ParamsQPayHbDetail{
 		ListID: "",
 	}
