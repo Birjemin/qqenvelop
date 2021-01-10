@@ -25,14 +25,14 @@ type ParamsQPayHbDetail struct {
 
 // RespQPayHbDetail response
 type RespQPayHbDetail struct {
-	RetCode     string               `json:"retcode"`
-	RetMsg      string               `json:"retmsg"`
-	ListID      string               `json:"listid"`
-	State       string               `json:"state"`
-	TotalNum    string               `json:"total_num"`
-	RecvNum     string               `json:"recv_num"`
-	TotalAmount string               `json:"total_amount"`
-	RecvAmount  string               `json:"recv_amount"`
+	RetCode     string                 `json:"retcode"`
+	RetMsg      string                 `json:"retmsg"`
+	ListID      string                 `json:"listid"`
+	State       string                 `json:"state"`
+	TotalNum    string                 `json:"total_num"`
+	RecvNum     string                 `json:"recv_num"`
+	TotalAmount string                 `json:"total_amount"`
+	RecvAmount  string                 `json:"recv_amount"`
 	RecvDetails []RespQPayHbRecvDetail `json:"recv_details"`
 }
 

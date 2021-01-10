@@ -31,7 +31,6 @@ func TestDetailHb(t *testing.T) {
 		}
 	}))
 
-
 	c := &utils.HTTPClient{
 		Client: &http.Client{
 			Timeout: 3 * time.Second,

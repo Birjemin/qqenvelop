@@ -19,7 +19,7 @@ func TestDownloadURL(t *testing.T) {
 	ast.Equal(
 		"https://api.qpay.qq.com/cgi-bin/hongbao/qpay_hb_mch_down_list_file.cgi?date=20210109&mch_id=&sign=AB0BF09C7218B5307C2FBE0A7D688BD7",
 		downloadURL,
-		)
+	)
 }
 
 // TestDownloadURL test ret
