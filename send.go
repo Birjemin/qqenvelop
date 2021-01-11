@@ -89,7 +89,8 @@ func (s *SendQPayHb) doSendQPayHb(URL, OpenID string, attributes ParamsSendQPayH
 	params["sign"] = generateSign(generateQueryStr(s.AppSecret, params))
 
 	var resp = new(RespSendQPayHb)
-
+	log.Println("params:", params)
+	log.Println("params1:", params["nonce_str"])
 	if err := s.HTTPRequest.HTTPPost(URL, params); err != nil {
 		log.Println("[send]do, post failed", err)
 		return resp, err

@@ -2,6 +2,7 @@ package utils
 
 import (
 	"crypto/md5"
+	"crypto/rand"
 	"encoding/hex"
 )
 
@@ -21,4 +22,19 @@ func Md5ByByte(bytes []byte) string {
 	md5Ctx.Write(bytes)
 	cipherStr := md5Ctx.Sum(nil)
 	return hex.EncodeToString(cipherStr)
+}
+
+// Bytes generates n random bytes
+func Bytes(n int) []byte {
+	b := make([]byte, n)
+	_, err := rand.Read(b)
+	if err != nil {
+		panic(err)
+	}
+	return b
+}
+
+// Hex ...
+func Hex(n int) string {
+	return hex.EncodeToString(Bytes(n))
 }
