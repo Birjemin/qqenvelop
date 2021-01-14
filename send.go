@@ -82,10 +82,16 @@ func (s *SendQPayHb) doSendQPayHb(URL, OpenID string, attributes ParamsSendQPayH
 	}
 	if attributes.MinValue == 0 {
 		params["min_value"] = total
+	} else {
+		params["min_value"] = strconv.Itoa(attributes.MinValue)
 	}
+
 	if attributes.MaxValue == 0 {
 		params["max_value"] = total
+	} else {
+		params["max_value"] = strconv.Itoa(attributes.MaxValue)
 	}
+
 	params["sign"] = generateSign(generateQueryStr(s.AppSecret, params))
 
 	var resp = new(RespSendQPayHb)
